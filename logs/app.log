@@ -1,0 +1,22 @@
+2026-03-26 00:16:03,893 - INFO - devsecai - Uploading file: sast_sample_report.pdf
+2026-03-26 00:16:03,926 - INFO - devsecai - PDF loaded successfully
+2026-03-26 00:16:29,651 - INFO - devsecai - Vector DB created
+2026-03-26 00:16:29,664 - INFO - devsecai - Agent initialized
+2026-03-26 00:17:21,718 - INFO - devsecai - Uploading file: sast_sample_report.pdf
+2026-03-26 00:17:21,760 - INFO - devsecai - PDF loaded successfully
+2026-03-26 00:17:27,860 - INFO - devsecai - Vector DB created
+2026-03-26 00:17:27,877 - INFO - devsecai - Agent initialized
+2026-03-26 00:18:01,620 - INFO - devsecai - User query: show me issue
+2026-03-26 00:18:15,588 - INFO - devsecai - Response generated successfully
+2026-03-26 00:18:40,792 - INFO - devsecai - User query: show me issue
+2026-03-26 00:18:51,805 - INFO - devsecai - Response generated successfully
+2026-03-26 00:21:03,402 - INFO - devsecai - User query: give me a solution for the vurnability issue here
+2026-03-26 00:21:23,808 - INFO - devsecai - Response generated successfully
+2026-03-26 00:24:20,135 - INFO - devsecai - Uploading file: Python_Assignment_Kartick_Tech_Academy (1).pdf
+2026-03-26 00:24:20,186 - INFO - devsecai - PDF loaded successfully
+2026-03-26 00:24:28,273 - INFO - devsecai - Vector DB created
+2026-03-26 00:24:28,290 - INFO - devsecai - Agent initialized
+2026-03-26 00:25:18,821 - INFO - devsecai - User query: Write a program to check whether a number is even or odd.
+2026-03-26 00:25:40,859 - INFO - devsecai - Response generated successfully
+2026-03-26 00:29:17,075 - INFO - devsecai - User query: Write a program to check whether a number is even or odd.
+2026-03-26 00:29:17,076 - ERROR - devsecai - Error: 'NoneType' object has no attribute 'invoke'
