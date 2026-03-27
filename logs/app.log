@@ -113,3 +113,173 @@ Traceback (most recent call last):
                 ~~~~~^^^^^^^^^^^^
 KeyError: 'analysis'
 During task with name 'report' and id '5a69eb5b-44d2-4e82-d0c9-1653143ee88c'
+2026-03-27 00:39:25,094 - INFO - devsecai - Uploading: sast_sample_report.pdf
+2026-03-27 00:39:25,118 - INFO - devsecai - PDF loaded
+2026-03-27 00:39:39,547 - INFO - devsecai - Vector DB created
+2026-03-27 00:39:39,624 - INFO - devsecai - Graph ready
+2026-03-27 00:39:56,411 - INFO - devsecai - ==== /ask API CALLED ====
+2026-03-27 00:39:56,412 - INFO - devsecai - Incoming query: what is issue
+2026-03-27 00:39:56,412 - INFO - devsecai - Graph object: <langgraph.graph.state.CompiledStateGraph object at 0x166a45a90>
+2026-03-27 00:39:56,412 - INFO - devsecai - Invoking LangGraph...
+2026-03-27 00:39:58,879 - ERROR - devsecai - ❌ ERROR during graph execution
+2026-03-27 00:39:58,881 - ERROR - devsecai - name 'ChatPromptTemplate' is not defined
+Traceback (most recent call last):
+  File "/Users/kartickmishra/Desktop/2026/AIAgent/app/main.py", line 130, in ask
+    result = app.state.graph.invoke({"query": query})
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/main.py", line 3292, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/main.py", line 2725, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        [t for t in loop.tasks.values() if not t.writes],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        schedule_task=loop.accept_push,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/_runner.py", line 167, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<10 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/_retry.py", line 96, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 656, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 400, in invoke
+    ret = self.func(*args, **kwargs)
+  File "/Users/kartickmishra/Desktop/2026/AIAgent/app/agents/graph.py", line 27, in <lambda>
+    graph.add_node("analyze", lambda s: analyzer_node(s, llm))
+                                        ~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/kartickmishra/Desktop/2026/AIAgent/app/agents/analyzer.py", line 2, in analyzer_node
+    prompt = ChatPromptTemplate.from_template("""
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'ChatPromptTemplate' is not defined
+During task with name 'analyze' and id 'ea4d9c4c-38d7-b903-ea46-059d593a718a'
+2026-03-27 00:42:23,107 - INFO - devsecai - Uploading: sast_sample_report.pdf
+2026-03-27 00:42:23,134 - INFO - devsecai - PDF loaded
+2026-03-27 00:42:30,497 - INFO - devsecai - Vector DB created
+2026-03-27 00:42:30,594 - INFO - devsecai - Graph ready
+2026-03-27 00:42:43,631 - INFO - devsecai - ==== /ask API CALLED ====
+2026-03-27 00:42:43,632 - INFO - devsecai - Incoming query: give me fixes
+2026-03-27 00:42:43,632 - INFO - devsecai - Graph object: <langgraph.graph.state.CompiledStateGraph object at 0x13be927b0>
+2026-03-27 00:42:43,632 - INFO - devsecai - Invoking LangGraph...
+2026-03-27 00:44:49,325 - INFO - devsecai - Graph execution completed ✅
+2026-03-27 00:44:49,333 - INFO - devsecai - Raw result: {'context': '2\nWeak hashing (MD5)\n3\nImproper error handling\nLow Issues\n1\nDebug mode enabled\n2\nInformation disclosure\nRecommendations\n1\nUse parameterized queries\n2\nInput validation\n3\nFollow OWASP Top 10\nApplication Security Scan Report (SAST)\nScan Tool:\nStatic Application Security Testing (SAST)\nScan Date:\n25 March 2026\nApplication:\nE-Commerce Web App\nScan ID:\nSAST-2026-001\nExecutive Summary\nTotal Issues\n12\nCritical\n3\nHigh\n4\nMedium\n3\nLow\n2\nOverall Risk\nHIGH\nCritical Vulnerabilities\n1. SQL Injection\nFile: user_login.py | Line: 45\nUnsanitized user input is used in SQL query.\nquery = "SELECT * FROM users WHERE username = \'" + username + "\'"\nImpact: Database compromise\nquery = "SELECT * FROM users WHERE username = \'" + username + "\'"\nImpact: Database compromise\ncursor.execute("SELECT * FROM users WHERE username = %s", (username,))\n2. Hardcoded Credentials\nPassword stored in code.\nDB_PASSWORD = "admin123"\n3. Command Injection\nos.system("ping " + user_input)\nHigh Severity Issues\nCross-Site Scripting (XSS)\ndocument.write(userInput);\nMedium Issues\n1\nMissing security headers\n2\nWeak hashing (MD5)\n3\nImproper error handling\nLow Issues\n1\nDebug mode enabled\n2', 'analysis': ' **Vulnerabilities:**\n1. SQL Injection\n2. Hardcoded Credentials\n3. Command Injection\n4. Cross-Site Scripting (XSS)\n5. Weak hashing (MD5)\n6. Improper error handling\n7. Missing security headers\n8. Debug mode enabled\n\n**Severity:**\n1. Critical: SQL Injection, Hardcoded Credentials\n2. High: Command Injection, Cross-Site Scripting (XSS)\n3. Medium: Weak hashing (MD5), Improper error handling, Missing security headers\n4. Low: Debug mode enabled\n\n**Impact:**\n1. SQL Injection: Database compromise\n2. Hardcoded Credentials: Unauthorized access to the database\n3. Command Injection: Potential for arbitrary system commands to be executed by an attacker\n4. Cross-Site Scripting (XSS): Attacker can inject malicious scripts into the web application\n5. Weak hashing (MD5): Easier password cracking due to weaker encryption\n6. Improper error handling: Leakage of sensitive information in error messages\n7. Missing security headers: Lack of protection against common web attacks like Clickjacking and CSRF\n8. Debug mode enabled: Potential for sensitive data exposure during development or testing\n\n**Recommendations:**\n1. Use parameterized queries to prevent SQL Injection\n2. Store passwords securely, never hardcode them in the code\n3. Avoid using command injection by sanitizing user input\n4. Implement strong encryption algorithms instead of MD5 for hashing\n5. Proper error handling should be implemented to avoid leaking sensitive information\n6. Follow OWASP Top 10 recommendations for application security best practices\n7. Ensure all necessary security headers are implemented on the web application\n8. Disable debug mode when not needed to prevent data exposure during development or testing.', 'fixes': " To address the vulnerabilities you've listed, here are my suggestions:\n\n1. **SQL Injection**: Use prepared statements with parameterized queries to separate SQL code from user input. This will help ensure that user input is always treated as literal values in your SQL queries and not as part of the command structure.\n\n2. **Hardcoded Credentials**: Never hardcode sensitive data such as passwords, API keys, or database credentials directly into your application's code. Instead, use environment variables, configuration files (with restricted access), or credential management services like AWS Secrets Manager or Azure Key Vault.\n\n3. **Command Injection**: Sanitize all user input to prevent the execution of arbitrary system commands. Use functions that escape or filter any potentially harmful characters in user-supplied data before using it in a shell command.\n\n4. **Cross-Site Scripting (XSS)**: Implement Content Security Policy (CSP), validate and sanitize user inputs, and avoid dynamic HTML injection to protect against XSS attacks.\n\n5. **Weak hashing (MD5)**: Use stronger cryptographic algorithms like SHA-256 for password hashing to make it more resistant to brute force attacks and password cracking.\n\n6. **Improper error handling**: Implement proper error handling by returning generic error messages that do not expose any sensitive information about your system or application structure. You can also consider implementing techniques like error logging, rate limiting, and user-specific error notifications to further protect against data leaks.\n\n7. **Missing security headers**: Ensure that your web application includes essential security headers such as X-Content-Type-Options, X-XSS-Protection, X-Frame-Options, and Content Security Policy (CSP) to provide protection against common web attacks like Clickjacking and Cross-Site Scripting (XSS).\n\n8. **Debug mode enabled**: Disable debug mode when not needed during production to prevent data exposure during development or testing. If necessary, use alternative methods for logging sensitive information, such as encrypted logs or third-party log management services.", 'report': " Executive Security Report\n\n**Title:** Vulnerability Assessment and Recommendations for [Your Organization's Name] Web Application\n\n**Overview:**\nThis report provides an analysis of potential security vulnerabilities in our web application, along with recommended fixes to mitigate these risks. The identified vulnerabilities range from critical to low severity.\n\n**Analysis:**\n\n1. SQL Injection: A critical vulnerability that could lead to database compromise due to insufficient input validation and sanitization of user data within SQL queries.\n\n2. Hardcoded Credentials: Unauthorized access to the database is possible as sensitive data, such as passwords, are hardcoded directly into the application's code.\n\n3. Command Injection: Potential for arbitrary system commands to be executed by an attacker due to insufficient input validation and sanitization of user data within shell commands.\n\n4. Cross-Site Scripting (XSS): Attackers can inject malicious scripts into the web application, potentially compromising user sessions or stealing sensitive data.\n\n5. Weak hashing (MD5): Easier password cracking due to weaker encryption, making it more vulnerable to brute force attacks and password cracking.\n\n6. Improper error handling: Sensitive information may be inadvertently leaked through error messages due to insufficient or nonexistent error handling practices.\n\n7. Missing security headers: Lack of protection against common web attacks like Clickjacking and Cross-Site Request Forgery (CSRF).\n\n8. Debug mode enabled: Potential for sensitive data exposure during development or testing due to debug mode being active in the production environment.\n\n**Severity:**\n1. Critical: SQL Injection, Hardcoded Credentials\n2. High: Command Injection, Cross-Site Scripting (XSS)\n3. Medium: Weak hashing (MD5), Improper error handling, Missing security headers\n4. Low: Debug mode enabled\n\n**Recommendations:**\n1. Use parameterized queries to prevent SQL Injection and separate SQL code from user input.\n2. Store passwords securely, never hardcode them in the code. Utilize environment variables, configuration files, or credential management services.\n3. Sanitize all user input to prevent command injection. Use functions that escape or filter any potentially harmful characters in user-supplied data before using it in a shell command.\n4. Implement strong encryption algorithms instead of MD5 for hashing, such as SHA-256.\n5. Proper error handling should be implemented to avoid leaking sensitive information. Return generic error messages that do not expose any sensitive information about the system or application structure.\n6. Follow OWASP Top 10 recommendations for application security best practices.\n7. Ensure all necessary security headers are implemented on the web application, such as X-Content-Type-Options, X-XSS-Protection, X-Frame-Options, and Content Security Policy (CSP).\n8. Disable debug mode when not needed to prevent data exposure during development or testing. Use alternative methods for logging sensitive information, such as encrypted logs or third-party log management services.\n\n**Fixes:**\n1. SQL Injection: Implement prepared statements with parameterized queries.\n2. Hardcoded Credentials: Store passwords securely using environment variables, configuration files, or credential management services like AWS Secrets Manager or Azure Key Vault.\n3. Command Injection: Sanitize user input to prevent the execution of arbitrary system commands.\n4. Cross-Site Scripting (XSS): Implement Content Security Policy (CSP), validate and sanitize user inputs, and avoid dynamic HTML injection.\n5. Weak hashing (MD5): Use stronger cryptographic algorithms like SHA-256 for password hashing.\n6. Improper error handling: Implement proper error handling by returning generic error messages that do not expose any sensitive information about the system or application structure. Utilize techniques like error logging, rate limiting, and user-specific error notifications to further protect against data leaks.\n7. Missing security headers: Ensure that your web application includes essential security headers such as X-Content-Type-Options, X-XSS-Protection, X-Frame-Options, and Content Security Policy (CSP).\n8. Debug mode enabled: Disable debug mode when not needed during production to prevent data exposure during development or testing. If necessary, use alternative methods for logging sensitive information, such as encrypted logs or third-party log management services."}
+2026-03-27 00:44:49,343 - INFO - devsecai - Analysis:  **Vulnerabilities:**
+1. SQL Injection
+2. Hardcoded Credentials
+3. Command Injection
+4. Cross-Site Scripting (XSS)
+5. Weak hashing (MD5)
+6. Improper error handling
+7. Missing security headers
+8. Debug mode enabled
+
+**Severity:**
+1. Critical: SQL Injection, Hardcoded Credentials
+2. High: Command Injection, Cross-Site Scripting (XSS)
+3. Medium: Weak hashing (MD5), Improper error handling, Missing security headers
+4. Low: Debug mode enabled
+
+**Impact:**
+1. SQL Injection: Database compromise
+2. Hardcoded Credentials: Unauthorized access to the database
+3. Command Injection: Potential for arbitrary system commands to be executed by an attacker
+4. Cross-Site Scripting (XSS): Attacker can inject malicious scripts into the web application
+5. Weak hashing (MD5): Easier password cracking due to weaker encryption
+6. Improper error handling: Leakage of sensitive information in error messages
+7. Missing security headers: Lack of protection against common web attacks like Clickjacking and CSRF
+8. Debug mode enabled: Potential for sensitive data exposure during development or testing
+
+**Recommendations:**
+1. Use parameterized queries to prevent SQL Injection
+2. Store passwords securely, never hardcode them in the code
+3. Avoid using command injection by sanitizing user input
+4. Implement strong encryption algorithms instead of MD5 for hashing
+5. Proper error handling should be implemented to avoid leaking sensitive information
+6. Follow OWASP Top 10 recommendations for application security best practices
+7. Ensure all necessary security headers are implemented on the web application
+8. Disable debug mode when not needed to prevent data exposure during development or testing.
+2026-03-27 00:44:49,343 - INFO - devsecai - Fixes:  To address the vulnerabilities you've listed, here are my suggestions:
+
+1. **SQL Injection**: Use prepared statements with parameterized queries to separate SQL code from user input. This will help ensure that user input is always treated as literal values in your SQL queries and not as part of the command structure.
+
+2. **Hardcoded Credentials**: Never hardcode sensitive data such as passwords, API keys, or database credentials directly into your application's code. Instead, use environment variables, configuration files (with restricted access), or credential management services like AWS Secrets Manager or Azure Key Vault.
+
+3. **Command Injection**: Sanitize all user input to prevent the execution of arbitrary system commands. Use functions that escape or filter any potentially harmful characters in user-supplied data before using it in a shell command.
+
+4. **Cross-Site Scripting (XSS)**: Implement Content Security Policy (CSP), validate and sanitize user inputs, and avoid dynamic HTML injection to protect against XSS attacks.
+
+5. **Weak hashing (MD5)**: Use stronger cryptographic algorithms like SHA-256 for password hashing to make it more resistant to brute force attacks and password cracking.
+
+6. **Improper error handling**: Implement proper error handling by returning generic error messages that do not expose any sensitive information about your system or application structure. You can also consider implementing techniques like error logging, rate limiting, and user-specific error notifications to further protect against data leaks.
+
+7. **Missing security headers**: Ensure that your web application includes essential security headers such as X-Content-Type-Options, X-XSS-Protection, X-Frame-Options, and Content Security Policy (CSP) to provide protection against common web attacks like Clickjacking and Cross-Site Scripting (XSS).
+
+8. **Debug mode enabled**: Disable debug mode when not needed during production to prevent data exposure during development or testing. If necessary, use alternative methods for logging sensitive information, such as encrypted logs or third-party log management services.
+2026-03-27 00:44:49,343 - INFO - devsecai - Report:  Executive Security Report
+
+**Title:** Vulnerability Assessment and Recommendations for [Your Organization's Name] Web Application
+
+**Overview:**
+This report provides an analysis of potential security vulnerabilities in our web application, along with recommended fixes to mitigate these risks. The identified vulnerabilities range from critical to low severity.
+
+**Analysis:**
+
+1. SQL Injection: A critical vulnerability that could lead to database compromise due to insufficient input validation and sanitization of user data within SQL queries.
+
+2. Hardcoded Credentials: Unauthorized access to the database is possible as sensitive data, such as passwords, are hardcoded directly into the application's code.
+
+3. Command Injection: Potential for arbitrary system commands to be executed by an attacker due to insufficient input validation and sanitization of user data within shell commands.
+
+4. Cross-Site Scripting (XSS): Attackers can inject malicious scripts into the web application, potentially compromising user sessions or stealing sensitive data.
+
+5. Weak hashing (MD5): Easier password cracking due to weaker encryption, making it more vulnerable to brute force attacks and password cracking.
+
+6. Improper error handling: Sensitive information may be inadvertently leaked through error messages due to insufficient or nonexistent error handling practices.
+
+7. Missing security headers: Lack of protection against common web attacks like Clickjacking and Cross-Site Request Forgery (CSRF).
+
+8. Debug mode enabled: Potential for sensitive data exposure during development or testing due to debug mode being active in the production environment.
+
+**Severity:**
+1. Critical: SQL Injection, Hardcoded Credentials
+2. High: Command Injection, Cross-Site Scripting (XSS)
+3. Medium: Weak hashing (MD5), Improper error handling, Missing security headers
+4. Low: Debug mode enabled
+
+**Recommendations:**
+1. Use parameterized queries to prevent SQL Injection and separate SQL code from user input.
+2. Store passwords securely, never hardcode them in the code. Utilize environment variables, configuration files, or credential management services.
+3. Sanitize all user input to prevent command injection. Use functions that escape or filter any potentially harmful characters in user-supplied data before using it in a shell command.
+4. Implement strong encryption algorithms instead of MD5 for hashing, such as SHA-256.
+5. Proper error handling should be implemented to avoid leaking sensitive information. Return generic error messages that do not expose any sensitive information about the system or application structure.
+6. Follow OWASP Top 10 recommendations for application security best practices.
+7. Ensure all necessary security headers are implemented on the web application, such as X-Content-Type-Options, X-XSS-Protection, X-Frame-Options, and Content Security Policy (CSP).
+8. Disable debug mode when not needed to prevent data exposure during development or testing. Use alternative methods for logging sensitive information, such as encrypted logs or third-party log management services.
+
+**Fixes:**
+1. SQL Injection: Implement prepared statements with parameterized queries.
+2. Hardcoded Credentials: Store passwords securely using environment variables, configuration files, or credential management services like AWS Secrets Manager or Azure Key Vault.
+3. Command Injection: Sanitize user input to prevent the execution of arbitrary system commands.
+4. Cross-Site Scripting (XSS): Implement Content Security Policy (CSP), validate and sanitize user inputs, and avoid dynamic HTML injection.
+5. Weak hashing (MD5): Use stronger cryptographic algorithms like SHA-256 for password hashing.
+6. Improper error handling: Implement proper error handling by returning generic error messages that do not expose any sensitive information about the system or application structure. Utilize techniques like error logging, rate limiting, and user-specific error notifications to further protect against data leaks.
+7. Missing security headers: Ensure that your web application includes essential security headers such as X-Content-Type-Options, X-XSS-Protection, X-Frame-Options, and Content Security Policy (CSP).
+8. Debug mode enabled: Disable debug mode when not needed during production to prevent data exposure during development or testing. If necessary, use alternative methods for logging sensitive information, such as encrypted logs or third-party log management services.

@@ -1,8 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
-
 def fixer_node(state, llm):
     prompt = ChatPromptTemplate.from_template("""
-    Based on the vulnerabilities below, suggest fixes:
+    Suggest fixes for:
 
     {analysis}
     """)
@@ -10,4 +9,5 @@ def fixer_node(state, llm):
     chain = prompt | llm
     result = chain.invoke({"analysis": state["analysis"]})
 
-    return {"fixes": result}
+    # ✅ merge state
+    return {**state, "fixes": result}

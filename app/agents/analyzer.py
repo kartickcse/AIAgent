@@ -4,7 +4,7 @@ def analyzer_node(state, llm):
     prompt = ChatPromptTemplate.from_template("""
     You are a cybersecurity expert.
 
-    Analyze the context and extract:
+    Extract:
     - Vulnerabilities
     - Severity
     - Impact
@@ -16,4 +16,5 @@ def analyzer_node(state, llm):
     chain = prompt | llm
     result = chain.invoke({"context": state["context"]})
 
-    return {"analysis": result}
+    # ✅ merge state
+    return {**state, "analysis": result}
